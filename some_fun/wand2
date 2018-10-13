@@ -1,0 +1,53 @@
+#include<iostream>
+#include<windows.h>
+using namespace std;
+
+/*
+	*					  
+	 *					 	
+	  *                
+	   *			   
+	    *            
+	     *          
+	      *        
+	       *      
+	        *    
+	         *	 
+	          *
+	           *
+	            *
+	             *
+	              *
+	               *
+	                *
+                   *
+                    *
+                     *
+                      *
+*/
+int main(){
+	char ch='0';
+	int i, j=0;
+	bool got=false;
+	
+	while(true){
+	
+		if(j==24)got=true;
+		else if(j==0)got=false;
+		
+		if(got){
+				for(i=0;i<j;i++)cout<<endl;	
+				for(i=0;i<j;i++)cout<<" ";
+				cout<<ch;
+				system("cls");
+				--j;
+		}
+		else{
+				for(i=0;i<j;i++)cout<<endl;	
+				for(i=0;i<j;i++)cout<<" ";
+				cout<<ch;
+				system("cls");
+				++j;
+			}
+		}
+	}
