@@ -1,0 +1,58 @@
+#include<iostream>
+#include<windows.h>
+using namespace std;
+
+/*
+	 very big "NO"
+*/
+int main(){
+	char ch='0';
+	int i, j=0, c=24, k=0;;
+	bool got=false;
+	
+	while(true){
+	
+		if(j==24)got=true;
+		else if(j==0)got=false;
+		
+		if(got){
+			c=24;
+			for(i=0;i<j;i++)cout<<endl;
+			if(k<=12){
+				for(i=24;i>j;i--)cout<<" ";
+				cout<<ch;
+				for(i=k;i<j;i++)cout<<" ";
+				cout<<ch;
+			}
+			else{
+				for(i=0;i<j;i++)cout<<" ";
+				cout<<ch;
+				for(i=k;i>j;i--)cout<<" ";
+				cout<<ch;
+			} 
+			++k;
+			--j;
+			system("cls");
+		}
+		else{
+			k=0;
+			for(i=0;i<j;i++)cout<<endl;
+			if(c>=12){
+				for(i=0;i<j;i++)cout<<" ";
+				cout<<ch;
+				for(i=c;i>j;i--)cout<<" ";
+				cout<<ch;
+			}
+			else{
+				for(i=24;i>j;i--)cout<<" ";
+				cout<<ch;
+				for(i=c;i<j;i++)cout<<" ";
+				cout<<ch;
+			} 
+			--c;
+			++j;
+			system("cls");
+			
+		}
+	}
+}
