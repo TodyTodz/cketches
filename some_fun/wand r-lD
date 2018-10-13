@@ -1,0 +1,42 @@
+#include<iostream>
+#include<windows.h>
+using namespace std;
+
+/*
+	 *					  
+	  *					 	
+	   *                
+	    *			   
+	     *            
+	      *          
+	       *        
+	        *      
+	         *    
+	          *	 
+	           *
+	            *
+	             *
+	              *
+	               *
+	                *
+	                 *
+	                  *
+	                   *
+	                    *
+	                     *
+	                      *
+*/
+
+int main(){
+	char ch='0';
+	int i, j=0;
+	
+	while(true){
+		for(j=24;j>0;j--){
+			for(i=24;i>j;i--)cout<<endl;	
+			for(i=0;i<j;i++)cout<<" ";
+			cout<<ch;
+			system("cls");
+		}
+	}
+}
