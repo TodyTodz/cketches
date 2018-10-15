@@ -1,0 +1,140 @@
+#include<iostream>
+#include <windows.h>
+#include<conio.h>
+//#include<C:\Users\User\Downloads\SFML>
+using namespace std;
+
+unsigned int size_of_field=20;
+const char snake='#', bort='*';
+const int w=56, a=52, s=50, d=54;
+int x, y;
+
+void ex(){
+	cout<<"asinc away\nasinc away\nasinc away\nasinc away\n";
+	exit(0);
+}
+void sett(){
+	char accept;
+	cout<<"Size of field: "<< size_of_field <<"x"<<size_of_field*2<<" \nDo you want change? (Y/N)\n";
+	accept=getch();
+	if(accept=='Y' || accept== 'y'){
+		cout<<"Input new size:";
+		cin>>size_of_field;
+		if(size_of_field*2<20)size_of_field=20;
+		else if(size_of_field*2>255)size_of_field=255;
+		else cout<<endl<<endl<<"Compliete!";	
+	}
+}
+
+void star(){
+	x=size_of_field;
+	y=size_of_field/2;
+	bool live=true;
+	char mass[size_of_field][size_of_field*2], t=56;
+	int i, j;
+	for(j=0;j<size_of_field;j++)
+		for(i=0;i<size_of_field*2;i++)
+			mass[j][i]=' ';
+	
+	
+	for(j=0;j<size_of_field*2;j++)mass[0][j]='*';
+	for(i=0;i<size_of_field;i++){
+		cout<<endl;
+		mass[i][0]='*';
+		mass[i][size_of_field*2-1]='*';
+	}
+	for(j=0;j<size_of_field*2;j++)mass[size_of_field-1][j]='*';
+	
+	for(j=0;j<size_of_field;j++){
+		for(i=0;i<size_of_field*2;i++){
+			cout<<mass[j][i];
+		}
+		cout<<endl;
+	}
+	
+	
+	while(live){
+	//	if(event.type == sf::Event::KeyPressed) t=getch();
+			switch((int)t){
+				case w: --y; break;
+				case a: --x; break;
+				case s: ++y; break;
+				case d: ++x; break;
+		}
+		if(mass[y][x]!=snake && mass[y][x]!=bort)mass[y][x]=snake;
+		else live=false;
+		
+		for(i=0;i<size_of_field;i++)cout<<endl;
+		
+		for(j=0;j<size_of_field;j++){
+			for(i=0;i<size_of_field*2;i++){
+				cout<<mass[j][i];
+			}
+			cout<<endl;
+		}	
+		Sleep(100);
+		
+	}
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+void menu(string s=""){
+	cout<<s;
+	
+	int i, j, y=20;
+	char a, mass[y][y], start[6]={'>','S','t','a','r','t'}, settings[9]={' ','S','e','t','t','i','n','g','s'}, exit[5]={' ','E','x','i','t'};
+	for(i=0;i<y;i++)
+		for(j=0;j<y;j++){
+			mass[i][j]=' ';
+		}
+	
+	
+	while(true){
+		for(i=0;i<6;i++)mass[3][i+2]=start[i];
+		for(i=0;i<9;i++)mass[4][i+2]=settings[i];
+		for(i=0;i<5;i++)mass[5][i+2]=exit[i];
+		for(i=0;i<10;i++){
+			for(j=0;j<y;j++){
+				cout<<mass[i][j];
+			}
+		cout<<endl;
+		}
+		a=getch();
+		switch((int)a){
+			case 50: 
+				if(start[0]=='>'){start[0]=' '; settings[0]='>';}
+				else if(settings[0]=='>'){settings[0]=' '; exit[0]='>';}
+				else if(exit[0]=='>'){start[0]='>'; exit[0]=' ';} break;
+			case 56: 
+				if(start[0]=='>'){start[0]=' '; exit[0]='>';}
+				else if(settings[0]=='>'){settings[0]=' '; start[0]='>';}
+				else if(exit[0]=='>'){settings[0]='>'; exit[0]=' ';} break;
+			case 13: 
+				if(start[0]=='>') star(); 
+				else if(settings[0]=='>')sett();
+				else if(exit[0]=='>')ex(); break;
+			default: cout<<endl<<"Use NumLock - 8 and 2 pls!";  break;
+		}
+		system ("cls");
+	}
+}
+
+int main(){
+menu();
+	
+	
+	
+}
