@@ -4,7 +4,7 @@
 #include <stdio.h>
 using namespace std;
 
-unsigned int size_of_field=20, chetchik=0;
+unsigned int size_of_field=20, chetchik=1;
 const char snake='#', bort='*';
 const int w=56, a=52, s=50, d=54;
 int x, y;
@@ -52,8 +52,19 @@ void star(){
 		cout<<endl;
 	}
 	
+
+	int *x_arr = new int[chetchik];
+	int *y_arr = new int[chetchik];
+	
+	x_arr[0]=size_of_field;
+	y_arr[0]=size_of_field/2;
 	
 	while(live){
+		
+		for(j=1;j<size_of_field-1;j++)
+		for(i=1;i<size_of_field*2-1;i++)
+			mass[j][i]=' ';
+		
 		if(kbhit()) t=getch();
 			switch((int)t){
 				case w: --y; break;
@@ -61,22 +72,37 @@ void star(){
 				case s: ++y; break;
 				case d: ++x; break;
 		}
-		if(mass[y][x]!=snake && mass[y][x]!=bort)mass[y][x]=snake;
+		if(mass[y][x]!=snake && mass[y][x]!=bort){
+			++chetchik;
+
+			int *buf_arr = new int[chetchik];
+			for(i=0;i<chetchik;i++){
+				buf_arr[i]=x_arr[i];	
+			}
+			buf_arr[chetchik-1]=x;
+			delete [] x_arr;
+			int *x_arr = new int[chetchik];
+			for(i=0;i<chetchik;i++){
+				x_arr[i]=buf_arr[i];	
+			}
+			
+			for(i=0;i<chetchik;i++){
+				buf_arr[i]=y_arr[i];	
+			}
+			buf_arr[chetchik-1]=y;
+			delete [] y_arr;
+			int *y_arr = new int[chetchik];
+			for(i=0;i<chetchik;i++){
+				y_arr[i]=buf_arr[i];	
+			}
+			
+			delete [] buf_arr;
+			
+			for(j=0;j<chetchik;j++)
+				mass[y_arr[j]][x_arr[j]]=snake;
+			
+		}
 		else live=false;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		system("cls");
 		for(j=0;j<size_of_field;j++){
 			for(i=0;i<size_of_field*2;i++){
@@ -87,6 +113,8 @@ void star(){
 		++chetchik;
 		Sleep(100);	
 	}	
+	delete [] x_arr;
+	delete [] y_arr;
 }
 
 
