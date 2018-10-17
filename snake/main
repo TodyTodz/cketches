@@ -4,10 +4,10 @@
 #include <stdio.h>
 using namespace std;
 
-unsigned int size_of_field=20, chetchik=1;
+unsigned int size_of_field=20, chetchik=0, snakecount=1, grantbuf=0;
 const char snake='#', bort='*';
 const int w=56, a=52, s=50, d=54;
-int x, y;
+int x, y, last[2];
 
 void ex(){
 	cout<<"asinc away\nasinc away\nasinc away\nasinc away\n";
@@ -31,10 +31,14 @@ void star(){
 	y=size_of_field/2;
 	bool live=true;
 	char mass[size_of_field][size_of_field*2], t=56;
+	int arrCopy[size_of_field][size_of_field*2];
 	int i, j;
 	for(j=0;j<size_of_field;j++)
-		for(i=0;i<size_of_field*2;i++)
+		for(i=0;i<size_of_field*2;i++){
 			mass[j][i]=' ';
+			arrCopy[j][i]=-1;
+		}
+			
 	
 	
 	for(j=0;j<size_of_field*2;j++)mass[0][j]='*';
@@ -52,13 +56,6 @@ void star(){
 		cout<<endl;
 	}
 	
-
-	int *x_arr = new int[chetchik];
-	int *y_arr = new int[chetchik];
-	
-	x_arr[0]=size_of_field;
-	y_arr[0]=size_of_field/2;
-	
 	while(live){
 		
 		for(j=1;j<size_of_field-1;j++)
@@ -71,36 +68,19 @@ void star(){
 				case a: --x; break;
 				case s: ++y; break;
 				case d: ++x; break;
+				default: --y; break;
 		}
 		if(mass[y][x]!=snake && mass[y][x]!=bort){
-			++chetchik;
-
-			int *buf_arr = new int[chetchik];
-			for(i=0;i<chetchik;i++){
-				buf_arr[i]=x_arr[i];	
-			}
-			buf_arr[chetchik-1]=x;
-			delete [] x_arr;
-			int *x_arr = new int[chetchik];
-			for(i=0;i<chetchik;i++){
-				x_arr[i]=buf_arr[i];	
-			}
-			
-			for(i=0;i<chetchik;i++){
-				buf_arr[i]=y_arr[i];	
-			}
-			buf_arr[chetchik-1]=y;
-			delete [] y_arr;
-			int *y_arr = new int[chetchik];
-			for(i=0;i<chetchik;i++){
-				y_arr[i]=buf_arr[i];	
-			}
-			
-			delete [] buf_arr;
-			
-			for(j=0;j<chetchik;j++)
-				mass[y_arr[j]][x_arr[j]]=snake;
-			
+			for(j=1;j<size_of_field-1;j++)
+				for(i=1;i<size_of_field*2-1;i++)
+					while(arrCopy[j][i]!=-1)++grantbuf;
+					for(int u=0; u<grantbuf-snakecount;u++)arrCopy[u][u]=0;	
+					
+				
+						
+					
+					
+					
 		}
 		else live=false;
 		system("cls");
@@ -112,9 +92,8 @@ void star(){
 		}	
 		++chetchik;
 		Sleep(100);	
+		if (chetchik%5==0)snakecount++;
 	}	
-	delete [] x_arr;
-	delete [] y_arr;
 }
 
 
