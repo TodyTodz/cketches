@@ -1,0 +1,33 @@
+use16
+org 100h
+
+mov eax,1
+mov ebx,3
+mov ecx,4
+mov edx,2
+
+add eax, eax
+add eax, 9472d
+add ebx, eax
+add ebx, eax
+add ecx, eax
+
+sub eax, 9472d
+sub eax, edx
+mov esp, edx
+sub esp, eax
+mov eax, esp
+add edx, eax 
+
+mov ax,4c00h
+int 21h
+
+;add r1, r1, r1
+;add r1, r1, #9472 
+;add r3, r3, r1 
+;add r3, r3, r1 
+;add r4, r4, r1
+;sub r1,r1,#9472
+;sub r1, r1, r0
+;sub r1, r0, r1 
+;add r0, r0, r1       
