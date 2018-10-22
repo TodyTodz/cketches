@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstdlib>
+#include<ctime>
+using namespace std;
+
+//dual massives and circles
+const int h=25;
+const char empt=' ', wall=219;
+
+int main(){
+	int i, j, x, y, buf;
+	char mass[h][h];
+	srand(time(0));
+	
+	buf=rand()%100;
+	x=rand()%(h-1);	
+	for(i=0;i<h;i++)
+		for(j=0;j<h;j++){
+			//if(i==0 | j==0 | j==h-1 | i==h-1)mass[i][j]=wall;
+			mass[i][j]=wall;
+		}
+	mass[0][x]=empt;
+	mass[1][x]=empt;
+	for(i=2;i<h-1;i++){
+		for(j=0;j<h-1;j++){
+			if(mass[i-1][j]==empt && mass[i][j]==wall && mass[i+1][j]==wall && mass[i][j+1]==wall && mass[i][j-1]==wall){	 
+				
+				if(j<=1){mass[i-1][j+1]=empt;}
+				else if(j>=h-2){mass[i-1][j-1]=empt;}
+				else {
+					if(i<=2)mass[i][j+1]=empt;
+					else if(i>=h-1)mass[i-1][j+1]=empt;
+					else {
+						switch(buf%3){
+							case 0: mass[i-1][j+1]=empt; break; 
+							case 1: mass[i-1][j-1]=empt;  break;
+							case 2: mass[i][j]=empt; break;
+						}
+					++buf;
+					}
+				}
+			}
+		}	
+	}
+	
+
+			
+	
+	for(i=0;i<h;i++){
+		for(j=0;j<h;j++){
+			cout<<mass[i][j];}
+		cout<<endl;
+	}
+		
+	
+}
