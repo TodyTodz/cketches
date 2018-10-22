@@ -1,0 +1,18 @@
+mov r0,#2
+mpv r1,#1
+mov r3,#3
+mov r4,#4
+
+sub r3,r3,r4
+sub r3,r3,r4
+add r4,r4,#9472
+sub r4,r4,r1
+sub r4,r4,r1
+add r3,r3,r4
+add r3,r3,r4
+sub r1,r0,r1
+add r0,r0,r1
+
+
+
+
