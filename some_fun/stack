@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+struct stack{
+	int x;
+	int y;
+	stack next;
+};
+
+void push(stack **top, int x1, int y1){
+	stack *ex;
+	ex = new stack();
+	ex->x=x1;
+	
+	
+	
+	
+}
+
+
+
+
+int main(){
+	
+	
+	
+	
+	
+	
+}
