@@ -4,9 +4,13 @@ using namespace std;
 
 /*
 	 very big "NO"
+
+This programm print very big symbol X.
+The main symbol runs along the diagonal of the symbol X.
+
 */
 int main(){
-	char ch='0';
+	char ch='0'; 	//main symbol
 	int i, j=0, c=24, k=0;;
 	bool got=false;
 	
