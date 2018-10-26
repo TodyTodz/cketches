@@ -1,60 +1,18 @@
 #include<iostream>
 #include <windows.h>
 #include<conio.h>
-#include <stdio.h>
+#include <stack>  
 using namespace std;
 
 
-struct stack{
-	int x;
-	int y;
-	stack *next;
+struct coord{
+	int x1;
+	int y1;
 };
-
-stack *top=NULL;
-
-void push(stack **top, int x1, int y1){
-	stack *ex;
-	ex = new stack();
-	ex->x=x1;
-	ex->y=y1;
-	if(top==NULL){
-		*top=ex;
-	}
-	else{
-		ex->next=*top;
-		*top=ex;	
-	}	
-}
-
-void delast(stack **top){
-	stack *ex=*top;
-	stack *prev=NULL;
-	while(ex){
-		if(ex->next==NULL){
-			ex->next=NULL;
-			ex->x=NULL;
-			ex->y=NULL;
-			prev->next=NULL;
-		}
-		prev=ex;
-		ex=ex->next;	
-	}
-}
-
-int num(stack **top){
-	stack *ex=*top;
-	int numb=0;
-	while(ex){
-		++numb;
-		ex=ex->next;	
-	}
-	return numb;
-}
+stack <coord> stak;
 
 
-
-unsigned int size_of_field=20, chetchik=0, snakecount=1, grantbuf=0;
+unsigned int size_of_field=20, chetchik=0, snakelent=10, grantbuf=0;
 const char snake='#', bort='*';
 const int w=56, a=52, s=50, d=54;
 int x, y, last[2];
@@ -79,6 +37,10 @@ void sett(){
 void star(){
 	x=size_of_field;
 	y=size_of_field/2;
+	coord dob;
+	dob.x1=x;
+	dob.y1=y;
+	stak.push(dob);
 	bool live=true;
 	char mass[size_of_field][size_of_field*2], t=56;
 	int snakelen=100;
@@ -103,8 +65,7 @@ void star(){
 			cout<<mass[j][i];
 		}
 		cout<<endl;
-	}
-	push(&top,x,y);	
+	}	
 	while(live){
 		
 		for(j=1;j<size_of_field-1;j++)
@@ -120,25 +81,27 @@ void star(){
 				default: --y; break;
 		}
 		if(mass[y][x]!=snake && mass[y][x]!=bort){
-//			push(&top,x,y);	
-			while(num(&top)>snakelen){
-				delast(&top);
+			dob.x1=x;
+			dob.y1=y;
+			stak.push(dob);	
+			while(stak.size()>snakelen){
+				stack
 			}
 		}
 		else live=false;
 		
 		system("cls");
 	
-		stack *ex=top;
+	
 		for(j=0;j<size_of_field;j++)
 			for(i=0;i<size_of_field*2;i++){
-				while(ex){		
-					ex=ex->next;
-					if(i==ex->x && j==ex->y){
-						mass[j][i]=snake;
+				//while(ex){		
+				//	ex=ex->next;
+				//	if(i==ex->x && j==ex->y){
+				//		mass[j][i]=snake;
 					}	
-				}
-			}
+				//}
+			//}
 
 			for(j=0;j<size_of_field;j++){
 				for(i=0;i<size_of_field*2;i++){
