@@ -1,3 +1,9 @@
+;FASMx86
+;Input: one letter (low or high register), one number and ENTER
+;Example: A1Enter
+;The program output - what colour specified sell is.
+;Input: A1 Output:Black
+;Input: b3 Output:White
 use16
 org 100h
 
