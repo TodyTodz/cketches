@@ -1,3 +1,17 @@
+/*
+You have four registers with initial values.
+You need to use formulas below to final values calculate.
+You can not use registers or values anymore.
+You have only add/adb, sub/sbb and mov commands.
+You must write the program in 9 strings.
+And I have no nervous more.
+
+R1 = R0 - R1 
+R0 = 2*R0 - R1
+R3 = R3 + 18944 - 4*R1 
+R4 = 9472 - 2*R1 + R4
+*/
+
 mov r0,#2
 mpv r1,#1
 mov r3,#3
