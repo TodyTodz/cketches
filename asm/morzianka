@@ -1,0 +1,47 @@
+;FASMx86 MORZE
+;.=1
+;-=0
+;
+use16
+org 100h
+jmp short start
+
+
+start:
+xor si,si
+mov ah,01h
+mov cx,1
+cin:
+ int 21h      ;readinput symbol
+ cmp al,'1'   ; one?
+ je next
+ cmp al,'0'   ; zero?
+ je next
+ cmp al,' '   ; space? - end of symbol-code
+ je next
+ cmp al,0Dh   ; enter? - end of string of symbol-code
+ mov cx,0
+ je next2
+ mov ax,4C00h ; other?
+ int 21h
+ next:
+ inc cx
+ next2;
+ mov [name+si],al
+ add si,2
+loop cin
+
+
+
+
+
+
+mov ax,4C00h
+int 21h
+
+;----------- data segment-----------
+morze db ' 10 '  ;1
+db ' 10 0111 100 001 011 1 1110 0011 11 1000 010 1011 00 01 000 1001 101 111 0 110 1101 1111 0101 0001 0000 0010 0110 0100 11011 1100 1010 $'
+;    А   Б    В   Г   Д  Е  Ж    З    И   Й   К   Л    М  Н  О   П    Р   С  Т  У   Ф    Х     Ц   Ч    Ш     Щ    ЬЪ   Ы    Э     Ю   Я
+name rb 1
+;----------- ----------- ----------- 
