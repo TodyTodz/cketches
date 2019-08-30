@@ -6,7 +6,6 @@ You need to use formulas below to final values calculate.
 You can not use registers or values anymore.
 You have only add/adb, sub/sbb and mov commands.
 You must write the program in 9 strings.
-And I have no nervous more.
 
 R1 = R0 - R1 
 R0 = 2*R0 - R1
